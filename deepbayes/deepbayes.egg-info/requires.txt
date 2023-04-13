@@ -1,0 +1,4 @@
+tensorflow-macos
+numpy
+tensorflow-probability
+tqdm
