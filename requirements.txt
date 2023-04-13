@@ -7,7 +7,7 @@ certifi==2022.12.7
 charset-normalizer==3.0.1
 cloudpickle==2.2.1
 decorator==5.1.1
--e git+https://github.com/alicedoherty/fairness-ml.git@25cc6708c66c63c101e790a9e945f4ba66cc8daf#egg=deepbayes&subdirectory=phase_3/deepbayes
+-e git+https://github.com/alicedoherty/bayesian-individual-fairness.git@9734aea2609f0cbef24e8e4896a102f2d839e0f3#egg=deepbayes&subdirectory=deepbayes
 dill==0.3.6
 dm-tree==0.1.8
 flatbuffers==23.1.21
