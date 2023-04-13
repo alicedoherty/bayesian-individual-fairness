@@ -8,7 +8,6 @@ import os
 
 def get_trial_means(df_list):
     #  Read in the all 10 dfs from trials and return the average of each measurement across all trials
-
     # https://stackoverflow.com/questions/25057835/get-the-mean-across-multiple-pandas-dataframes
     df_means = pd.concat(df_list)
     # sort=False to maintain index/row order
