@@ -268,7 +268,6 @@ def main():
             # avrg_diff_DNN = random.random()
             # avrg_diff_BNN = random.random()
 
-            # https://stackoverflow.com/questions/70837397/good-alternative-to-pandas-append-method-now-that-it-is-being-deprecated
             new_row = pd.DataFrame([accuracy_DNN, accuracy_BNN, basic_score_DNN, basic_score_BNN, max_diff_DNN, max_diff_BNN,
                                     min_diff_DNN, min_diff_BNN, avrg_diff_DNN, avrg_diff_BNN], index=measurements, columns=[f"L{layer_num}N{neuron_num}"]).T
             df = pd.concat((df, new_row))

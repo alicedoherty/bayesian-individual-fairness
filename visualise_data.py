@@ -8,7 +8,6 @@ import os
 
 def get_trial_means(df_list):
     #  Read in the all 10 dfs from trials and return the average of each measurement across all trials
-    # https://stackoverflow.com/questions/25057835/get-the-mean-across-multiple-pandas-dataframes
     df_means = pd.concat(df_list)
     # sort=False to maintain index/row order
     df_means = df_means.groupby(df_means.index, sort=False).mean()
@@ -37,7 +36,6 @@ def generate_heatmaps(df, epsilon):
 
         # Then, we want to convert the 1D array to a 2D array of shape (6, 5) (i.e. 6 rows (neurons), 5 columns (layers))
         # So it can be converted to a heatmap easily
-        # https://stackoverflow.com/questions/12575421/convert-a-1d-array-to-a-2d-array-in-numpy
         heatmap_data = np.reshape(results, (len(neurons), len(layers)))
         print("Heatmap Formatted Data:", heatmap_data)
 
@@ -48,7 +46,8 @@ def generate_heatmaps(df, epsilon):
 
         sns.heatmap(heatmap_df,
                     cmap='coolwarm',
-                    annot=True,
+                    # annot=True,
+                    cbar_kws={'label': '\u03B4\u002A'},
                     fmt='.5g',
                     vmin=0,
                     vmax=1)
@@ -57,7 +56,7 @@ def generate_heatmaps(df, epsilon):
         plt.xlabel('Number of Hidden Layers', fontsize=22)
         plt.ylabel('Number of Neurons (width)', fontsize=22)
         plt.savefig(
-            f"./final/heatmaps/heatmaps_{epsilon}/{measurement}_{epsilon}.png")
+            f"./heatmaps/heatmaps_{epsilon}/{measurement}_{epsilon}.png")
 
 
 def generate_accuracy_fairness_plots(df, epsilon):
@@ -81,7 +80,7 @@ def generate_accuracy_fairness_plots(df, epsilon):
         axis.set_xlim([0, 1])
         axis.set_ylim([0, 1])
         plt.savefig(
-            f"./final/fairness_acc_plots/plots_{epsilon}/{measurement}_{epsilon}.png")
+            f"./fairness_acc_plots/plots_{epsilon}/{measurement}_{epsilon}.png")
 
     for label in BNN_labels:
         tmp = label
@@ -97,7 +96,7 @@ def generate_accuracy_fairness_plots(df, epsilon):
         axis.set_xlim([0, 1])
         axis.set_ylim([0, 1])
         plt.savefig(
-            f"./final/fairness_acc_plots/plots_{epsilon}/{measurement}_{epsilon}.png")
+            f"./fairness_acc_plots/plots_{epsilon}/{measurement}_{epsilon}.png")
 
 
 def generate_epsilon_plots(df_list):
@@ -131,11 +130,11 @@ def generate_epsilon_plots(df_list):
                 axis.set_xlim([0, 0.20])
                 axis.set_ylim([0, 1])
 
-                if not os.path.exists(f"./final/epsilon_plots/L{layer_num}N{neuron_num}/"):
+                if not os.path.exists(f"./epsilon_plots/L{layer_num}N{neuron_num}/"):
                     os.makedirs(
-                        f"./final/epsilon_plots/L{layer_num}N{neuron_num}/")
+                        f"./epsilon_plots/L{layer_num}N{neuron_num}/")
                 plt.savefig(
-                    f"./final/epsilon_plots/L{layer_num}N{neuron_num}/{measurement}_L{layer_num}N{neuron_num}.png")
+                    f"./epsilon_plots/L{layer_num}N{neuron_num}/{measurement}_L{layer_num}N{neuron_num}.png")
 
 
 def main():
@@ -148,7 +147,7 @@ def main():
     for epsilon in eps:
         file_names = []
         # Read in all files in the results directory
-        for item in Path(f"./final/results/epsilon_{epsilon}/").iterdir():
+        for item in Path(f"./results/epsilon_{epsilon}/").iterdir():
             if item.is_file():
                 file_names.append(str(item))
 
@@ -173,7 +172,7 @@ def main():
         pd.set_option('display.width', 1000)
 
         f = open(
-            f"./final/results/mean_results/eps_{epsilon}.csv", 'w')
+            f"./results/mean_results/eps_{epsilon}.csv", 'w')
         print(df_means, file=f)
 
         mean_results_by_eps.append(df_means)
