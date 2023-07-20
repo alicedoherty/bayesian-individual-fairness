@@ -4,6 +4,7 @@ The following repository contains the code related to my Final Year Project expl
 
 ## Contents
 
+- `IndividualFairnessinBNNs_AliceDoherty.pdf` - Final Year Project/Dissertation report.
 - `run_trial.py` - Main script for running an experimental trial (i.e. training a variety of BNNs and deterministic NNs on the Adult dataset and evaluating their individual fairness).
 - `visualise_data.py` - Script for visualising the results of the experiments.
 - `requirements.txt` - Requirements required to run the provided code. Use `pip install -r requirements.txt`.
